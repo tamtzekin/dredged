@@ -12,6 +12,9 @@ public class LudumInventory : MonoBehaviour
 	[SerializeField] private ThoughtItem[] _definitions;
 	[SerializeField] private Font font;
 
+	[Header("Gameplay Options")]
+
+	[Tooltip("Multi-cell items are only affected by other items, not by the other cells of the item.")]
 	[SerializeField] private bool scoreOnlyFromOthers = false;
 
 	InventoryManager inventory;
