@@ -25,12 +25,17 @@ public class LudumInventory : MonoBehaviour
 
 	Text[] gridText;
 
+	[SerializeField] int[,] currentScores;
+
 	private Pool<Text> _textPool;
 
 	// Use this for initialization
 	void Start ()
 	{
 		inventory = new InventoryManager(_width, _height);
+
+		// initalise scores
+		currentScores = new int[_width,_height];
 
 		// Fill inventory with random items
 		var tries = (_width * _height) / 3;
@@ -115,8 +120,9 @@ public class LudumInventory : MonoBehaviour
 		{
 			for(int h = 0; h < _height; h++)
 			{
+				currentScores[w,h] = GetCellScore(w,h);
 				var index = h * inventory.Width + ((inventory.Width - 1) - w);
-				gridText[index].text = GetCellScore(w,h).ToString();
+				gridText[index].text = currentScores[w,h].ToString();
 			}
 		}
 	}
