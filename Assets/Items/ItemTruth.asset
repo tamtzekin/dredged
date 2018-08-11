@@ -16,4 +16,5 @@ MonoBehaviour:
     _width: 1
     _height: 1
     _shape: 01
+  dropSound: {fileID: 8300000, guid: 0cf92124db5ae426aa8cf95a402a77d2, type: 3}
   score: 1

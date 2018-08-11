@@ -12,6 +12,8 @@ public class ThoughtItem : ScriptableObject, IInventoryItem
 	public string Name { get { return this.name; } }
 	public Sprite Sprite { get { return _sprite; } }
 	public InventoryShape Shape { get { return _shape; } }
+
+	public AudioClip dropSound;
 	
 	public int score;
 	

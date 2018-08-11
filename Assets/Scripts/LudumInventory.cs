@@ -91,6 +91,8 @@ public class LudumInventory : MonoBehaviour
 		Evaluate();
 		inventory.OnItemAdded += (item) =>
 		{
+			ThoughtItem thoughtItem = (ThoughtItem) item;
+			GetComponent<AudioSource>().PlayOneShot(thoughtItem.dropSound);
 			Evaluate();
 		};
 	}
