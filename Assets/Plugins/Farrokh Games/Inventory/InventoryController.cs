@@ -22,6 +22,8 @@ namespace FarrokhGames.Inventory
             private InventoryManager _inventory { get { return _renderer._inventory; } }
             private IInventoryItem _itemToDrag;
 
+		[SerializeField] private AudioSource holdAudioSource;
+
             /*
              * Setup
              */
@@ -67,6 +69,8 @@ namespace FarrokhGames.Inventory
 
                     // Remove the item from inventory
                     _inventory.Remove(_itemToDrag);
+				// Play hold audio
+				holdAudioSource.Play();
                 }
             }
 
@@ -91,6 +95,8 @@ namespace FarrokhGames.Inventory
                 {
                     _draggedItem.Drop(eventData.position);
                     _draggedItem = null;
+				// Play hold audio
+				holdAudioSource.Stop();
                 }
             }
 
