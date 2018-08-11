@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using FarrokhGames.Inventory;
 using FarrokhGames.Inventory.Examples;
@@ -16,6 +17,9 @@ public class LudumInventory : MonoBehaviour
 
 	[Tooltip("Multi-cell items are only affected by other items, not by the other cells of the item.")]
 	[SerializeField] private bool scoreOnlyFromOthers = false;
+
+	[Tooltip("The score for a cell is only affected by each surrounding object once, even if multiple cells for that object are nearby")]
+	[SerializeField] private bool itemsOnlyAffectCellsOnce = false;
 
 	InventoryManager inventory;
 
@@ -117,6 +121,8 @@ public class LudumInventory : MonoBehaviour
 
 	int GetCellScore(int gridX, int gridY)
 	{
+		HashSet<ThoughtItem> neighbourItems = new HashSet<ThoughtItem>();
+
 		int score = 0;
 		IInventoryItem item = inventory.GetAtPoint(new Vector2Int(gridX,gridY));
 		for (int neighbourX = gridX - 1; neighbourX <= gridX + 1; neighbourX ++)
@@ -131,9 +137,16 @@ public class LudumInventory : MonoBehaviour
 						if(neighbourItem != null)
 						{
 							ThoughtItem thoughtItem = (ThoughtItem) neighbourItem;
-							if(scoreOnlyFromOthers != true || (scoreOnlyFromOthers == true && item != thoughtItem))
+							if(itemsOnlyAffectCellsOnce == false)
 							{
-								score = score + thoughtItem.score;
+								if(scoreOnlyFromOthers != true || (scoreOnlyFromOthers == true && item != thoughtItem))
+								{
+									score = score + thoughtItem.score;
+								}
+							}
+							else
+							{
+								neighbourItems.Add(thoughtItem);
 							}
 						}
 					}
@@ -141,6 +154,15 @@ public class LudumInventory : MonoBehaviour
 				else
 				{// If we're outside the grid
 				}
+			}
+		}
+
+		if(itemsOnlyAffectCellsOnce == true)
+		{
+			Debug.Log(gridX + ", " + gridY + " affected by " + neighbourItems.Count);
+			foreach(ThoughtItem thoughtItem in neighbourItems)
+			{
+				score = score + thoughtItem.score;
 			}
 		}
 		return score;
