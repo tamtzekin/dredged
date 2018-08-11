@@ -12,6 +12,8 @@ public class LudumInventory : MonoBehaviour
 	[SerializeField] private ThoughtItem[] _definitions;
 	[SerializeField] private Font font;
 
+	[SerializeField] private bool scoreOnlyFromOthers = false;
+
 	InventoryManager inventory;
 
 	Text[] gridText;
@@ -113,6 +115,7 @@ public class LudumInventory : MonoBehaviour
 	int GetCellScore(int gridX, int gridY)
 	{
 		int score = 0;
+		IInventoryItem item = inventory.GetAtPoint(new Vector2Int(gridX,gridY));
 		for (int neighbourX = gridX - 1; neighbourX <= gridX + 1; neighbourX ++)
 		{
 			for (int neighbourY = gridY - 1; neighbourY <= gridY + 1; neighbourY ++)
@@ -125,7 +128,10 @@ public class LudumInventory : MonoBehaviour
 						if(neighbourItem != null)
 						{
 							ThoughtItem thoughtItem = (ThoughtItem) neighbourItem;
-							score = score + thoughtItem.score;
+							if(scoreOnlyFromOthers != true || (scoreOnlyFromOthers == true && item != thoughtItem))
+							{
+								score = score + thoughtItem.score;
+							}
 						}
 					}
 				}
