@@ -104,13 +104,8 @@ public class LudumInventory : MonoBehaviour
 		{
 			for(int h = 0; h < _height; h++)
 			{
-				IInventoryItem item = inventory.GetAtPoint(new Vector2Int(w,h));
-				if(item != null)
-				{
-					var index = h * inventory.Width + ((inventory.Width - 1) - w);
-					Debug.Log(w+","+h+": " + GetCellScore(w,h));
-					gridText[index].text = GetCellScore(w,h).ToString();
-				}
+				var index = h * inventory.Width + ((inventory.Width - 1) - w);
+				gridText[index].text = GetCellScore(w,h).ToString();
 			}
 		}
 	}
