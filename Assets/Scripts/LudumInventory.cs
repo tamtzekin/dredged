@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using FarrokhGames.Inventory;
 using FarrokhGames.Inventory.Examples;
+using FarrokhGames.Shared;
 
 [RequireComponent(typeof(InventoryRenderer))]
 public class LudumInventory : MonoBehaviour
@@ -8,8 +10,13 @@ public class LudumInventory : MonoBehaviour
 	[SerializeField] private int _width = 8;
 	[SerializeField] private int _height = 4;
 	[SerializeField] private ItemDefinition[] _definitions;
+	[SerializeField] private Font font;
 
 	InventoryManager inventory;
+
+	Text[] gridText;
+
+	private Pool<Text> _textPool;
 
 	// Use this for initialization
 	void Start ()
@@ -24,12 +31,70 @@ public class LudumInventory : MonoBehaviour
 		}
 
 		// Sets the renderers's inventory to trigger drawing
+		InventoryRenderer inventoryRenderer = GetComponent<InventoryRenderer>();
 		GetComponent<InventoryRenderer>().SetInventory(inventory);
 
+		var textContainer = new GameObject("Text Pool").AddComponent<RectTransform>();
+		textContainer.transform.SetParent(transform);
+		textContainer.transform.localPosition = Vector3.zero;
+		textContainer.transform.localScale = Vector3.one;
+
+		// Create pool of images
+		_textPool = new Pool<Text>(
+			delegate
+			{
+			var text = new GameObject("Text").AddComponent<Text>();
+			text.transform.SetParent(textContainer);
+			text.transform.localScale = Vector3.one;
+			return text;
+		},
+		0,
+		true);
+
+		Vector2 CellSize = inventoryRenderer.CellSize;
+
+		// Render new grid
+		var containerSize = new Vector2(CellSize.x * inventory.Width, CellSize.y * inventory.Height);
+		var topLeft = new Vector3(-containerSize.x / 2, -containerSize.y / 2, 0); // Calculate topleft corner
+		var halfCellSize = new Vector3(CellSize.x / 2, CellSize.y / 2, 0); // Calulcate cells half-size
+
+		// Spawn grid images
+		gridText = new Text[inventory.Width * inventory.Height];
+		var c = 0;
+		for (int y = 0; y < inventory.Height; y++)
+		{
+			for (int x = 0; x < inventory.Width; x++)
+			{
+				Text text = CreateText();
+				text.text = "0";
+				text.color = Color.black;
+				text.font = font;
+				text.alignment = TextAnchor.MiddleCenter;
+				text.gameObject.name = "text " + c;
+				text.rectTransform.SetAsFirstSibling();
+				text.rectTransform.localPosition = topLeft + new Vector3(CellSize.x * ((inventory.Width - 1) - x), CellSize.y * y, 0) + halfCellSize;
+				text.rectTransform.sizeDelta = CellSize;
+				gridText[c] = text;
+				c++;
+			}
+		}
+
+		Evaluate();
 		inventory.OnItemAdded += (item) =>
 		{
 			Evaluate();
 		};
+	}
+
+	/*
+         * Create an image with given sprite and settings
+         */
+	private Text CreateText()
+	{
+		var text = _textPool.Take();
+		text.gameObject.SetActive(true);
+		text.transform.SetAsLastSibling();
+		return text;
 	}
 
 	public void Evaluate()
@@ -42,7 +107,9 @@ public class LudumInventory : MonoBehaviour
 				IInventoryItem item = inventory.GetAtPoint(new Vector2Int(w,h));
 				if(item != null)
 				{
+					var index = h * inventory.Width + ((inventory.Width - 1) - w);
 					Debug.Log(w+","+h+": " + GetCellScore(w,h));
+					gridText[index].text = GetCellScore(w,h).ToString();
 				}
 			}
 		}

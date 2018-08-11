@@ -396,6 +396,7 @@ MonoBehaviour:
   _definitions:
   - {fileID: 11400000, guid: 87666b18b99ef43f58ff4d716d069857, type: 2}
   - {fileID: 11400000, guid: e4fea67f2493a4c84b6e2d7f93e8ec96, type: 2}
+  font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1461595388
 MonoBehaviour:
   m_ObjectHideFlags: 0
