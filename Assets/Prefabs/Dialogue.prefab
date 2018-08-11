@@ -53,7 +53,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564a8eed025361447b881f26d51c0b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultVariables: []
+  defaultVariables:
+  - name: Player Name
+    value: S
+    type: 1
+  - name: Fake Player Name
+    value: B
+    type: 1
   debugTextView: {fileID: 0}
 --- !u!114 &114884043293992324
 MonoBehaviour:

@@ -111,8 +111,8 @@ namespace Yarn.Unity.Example {
             if (continuePrompt != null)
                 continuePrompt.SetActive (true);
 
-            // Wait for any user input
-            while (Input.anyKeyDown == false) {
+            // Wait for any user input  <<-- REPLACE LATER
+            while (!Input.GetKeyDown(KeyCode.Space)) {
                 yield return null;
             }
 
