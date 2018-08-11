@@ -254,7 +254,8 @@ namespace FarrokhGames.Inventory
                     }
                     else
                     {
-                        OriginalController._inventory.Drop(_draggedItem.Item); // Drop the item
+                        //OriginalController._inventory.Drop(_draggedItem.Item); // Drop the item
+                        OriginalController._inventory.AddAt(Item, OriginPoint); // Return the item to its previous location
                     }
 
                     // Destroy the image representing the item
