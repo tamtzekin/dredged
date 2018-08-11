@@ -8,18 +8,11 @@ using FarrokhGames.Shared;
 [RequireComponent(typeof(InventoryRenderer))]
 public class LudumInventory : MonoBehaviour
 {
-	[SerializeField] private int _width = 8;
-	[SerializeField] private int _height = 4;
 	[SerializeField] private ThoughtItem[] _definitions;
 	[SerializeField] private Font font;
 
 	[Header("Gameplay Options")]
-
-	[Tooltip("Multi-cell items are only affected by other items, not by the other cells of the item.")]
-	[SerializeField] private bool scoreOnlyFromOthers = false;
-
-	[Tooltip("The score for a cell is only affected by each surrounding object once, even if multiple cells for that object are nearby")]
-	[SerializeField] private bool itemsOnlyAffectCellsOnce = false;
+	[SerializeField] GameSettings gameSettings;
 
 	InventoryManager inventory;
 
@@ -32,13 +25,13 @@ public class LudumInventory : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		inventory = new InventoryManager(_width, _height);
+		inventory = new InventoryManager(gameSettings.startWidth, gameSettings.startHeight);
 
 		// initalise scores
-		currentScores = new int[_width,_height];
+		currentScores = new int[inventory.Width, inventory.Height];
 
 		// Fill inventory with random items
-		var tries = (_width * _height) / 3;
+		var tries = (inventory.Width * inventory.Height) / 3;
 		for (var i = 0; i < tries; i++)
 		{
 			inventory.Add(_definitions[Random.Range(0, _definitions.Length)].CreateInstance());
@@ -116,9 +109,9 @@ public class LudumInventory : MonoBehaviour
 	public void Evaluate()
 	{
 		Debug.Log("Evaluate");
-		for(int w = 0; w < _width; w++)
+		for(int w = 0; w < inventory.Width; w++)
 		{
-			for(int h = 0; h < _height; h++)
+			for(int h = 0; h < inventory.Height; h++)
 			{
 				currentScores[w,h] = GetCellScore(w,h);
 				var index = h * inventory.Width + ((inventory.Width - 1) - w);
@@ -137,7 +130,7 @@ public class LudumInventory : MonoBehaviour
 		{
 			for (int neighbourY = gridY - 1; neighbourY <= gridY + 1; neighbourY ++)
 			{
-				if (neighbourX >= 0 && neighbourX < _width && neighbourY >= 0 && neighbourY < _height)
+				if (neighbourX >= 0 && neighbourX < inventory.Width && neighbourY >= 0 && neighbourY < inventory.Height)
 				{// If we're inside the grid
 					if (neighbourX != gridX || neighbourY != gridY)
 					{// If we're not the original cell
@@ -145,9 +138,9 @@ public class LudumInventory : MonoBehaviour
 						if(neighbourItem != null)
 						{
 							ThoughtItem thoughtItem = (ThoughtItem) neighbourItem;
-							if(itemsOnlyAffectCellsOnce == false)
+							if(gameSettings.itemsOnlyAffectCellsOnce == false)
 							{
-								if(scoreOnlyFromOthers != true || (scoreOnlyFromOthers == true && item != thoughtItem))
+								if(gameSettings.scoreOnlyFromOthers != true || (gameSettings.scoreOnlyFromOthers == true && item != thoughtItem))
 								{
 									score = score + thoughtItem.score;
 								}
@@ -165,7 +158,7 @@ public class LudumInventory : MonoBehaviour
 			}
 		}
 
-		if(itemsOnlyAffectCellsOnce == true)
+		if(gameSettings.itemsOnlyAffectCellsOnce == true)
 		{
 			Debug.Log(gridX + ", " + gridY + " affected by " + neighbourItems.Count);
 			foreach(ThoughtItem thoughtItem in neighbourItems)
