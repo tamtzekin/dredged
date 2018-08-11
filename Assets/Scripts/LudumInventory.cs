@@ -9,7 +9,7 @@ public class LudumInventory : MonoBehaviour
 {
 	[SerializeField] private int _width = 8;
 	[SerializeField] private int _height = 4;
-	[SerializeField] private ItemDefinition[] _definitions;
+	[SerializeField] private ThoughtItem[] _definitions;
 	[SerializeField] private Font font;
 
 	InventoryManager inventory;
@@ -124,14 +124,8 @@ public class LudumInventory : MonoBehaviour
 						IInventoryItem neighbourItem = inventory.GetAtPoint(new Vector2Int(neighbourX,neighbourY));
 						if(neighbourItem != null)
 						{
-							if(neighbourItem.Name.Contains("Lie"))
-							{
-								score--;
-							}
-							else
-							{
-								score++;
-							}
+							ThoughtItem thoughtItem = (ThoughtItem) neighbourItem;
+							score = score + thoughtItem.score;
 						}
 					}
 				}
