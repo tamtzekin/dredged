@@ -67,7 +67,7 @@ public class LudumInventory : MonoBehaviour
 			{
 				Text text = CreateText();
 				text.text = "0";
-				text.color = Color.black;
+				text.color = Color.white;
 				text.font = font;
 				text.alignment = TextAnchor.MiddleCenter;
 				text.gameObject.name = "text " + c;
