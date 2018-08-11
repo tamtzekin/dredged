@@ -18,6 +18,8 @@ public class LudumInventory : MonoBehaviour
 
 	Text[] gridText;
 
+	[SerializeField] Text totalScoreText;
+
 	[SerializeField] int[,] currentScores;
 
 	private Pool<Text> _textPool;
@@ -109,15 +111,19 @@ public class LudumInventory : MonoBehaviour
 	public void Evaluate()
 	{
 		Debug.Log("Evaluate");
+		int total = 0;
 		for(int w = 0; w < inventory.Width; w++)
 		{
 			for(int h = 0; h < inventory.Height; h++)
 			{
-				currentScores[w,h] = GetCellScore(w,h);
+				int currentCellScore = GetCellScore(w,h);
+				total+= currentCellScore;
+				currentScores[w,h] = currentCellScore;
 				var index = h * inventory.Width + ((inventory.Width - 1) - w);
 				gridText[index].text = currentScores[w,h].ToString();
 			}
 		}
+		totalScoreText.text = total.ToString();
 	}
 
 	int GetCellScore(int gridX, int gridY)
