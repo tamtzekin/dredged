@@ -1,0 +1,28 @@
+title: Start
+tags: 
+colorID: 0
+position: 592,181
+---
+Okay.
+Let's start again.
+Here, can you take a seat?
+-> Sure.
+-> I’m already sitting down.
+What is your name?
+-> S.
+-> B.
+You didn’t say that last time. Tell me again, what’s your name?
+-> S.
+-> B.
+Tell me about the first time you met Riley.
+-> Who?
+-> Okay. What do you want to know? 
+When did you meet them?
+-> There were a couple of times. 
+-> I only met Riley once.
+Did you speak to them? 
+-> Yes.
+-> No.
+Try to remember for me. Did you?
+-> Yes
+-> No
