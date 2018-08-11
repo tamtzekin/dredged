@@ -25,24 +25,59 @@ public class LudumInventory : MonoBehaviour
 
 		// Sets the renderers's inventory to trigger drawing
 		GetComponent<InventoryRenderer>().SetInventory(inventory);
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		if (Input.GetKeyDown(KeyCode.Space))
+
+		inventory.OnItemAdded += (item) =>
 		{
-			for(int w = 0; w < _width; w++)
+			Evaluate();
+		};
+	}
+
+	public void Evaluate()
+	{
+		Debug.Log("Evaluate");
+		for(int w = 0; w < _width; w++)
+		{
+			for(int h = 0; h < _height; h++)
 			{
-				for(int h = 0; h < _height; h++)
+				IInventoryItem item = inventory.GetAtPoint(new Vector2Int(w,h));
+				if(item != null)
 				{
-					IInventoryItem item = inventory.GetAtPoint(new Vector2Int(w,h));
-					if(item != null)
-					{
-						Debug.Log(w+","+h+": " + item.Name);
-					}
+					Debug.Log(w+","+h+": " + GetCellScore(w,h));
 				}
 			}
 		}
+	}
+
+	int GetCellScore(int gridX, int gridY)
+	{
+		int score = 0;
+		for (int neighbourX = gridX - 1; neighbourX <= gridX + 1; neighbourX ++)
+		{
+			for (int neighbourY = gridY - 1; neighbourY <= gridY + 1; neighbourY ++)
+			{
+				if (neighbourX >= 0 && neighbourX < _width && neighbourY >= 0 && neighbourY < _height)
+				{// If we're inside the grid
+					if (neighbourX != gridX || neighbourY != gridY)
+					{// If we're not the original cell
+						IInventoryItem neighbourItem = inventory.GetAtPoint(new Vector2Int(neighbourX,neighbourY));
+						if(neighbourItem != null)
+						{
+							if(neighbourItem.Name.Contains("Lie"))
+							{
+								score--;
+							}
+							else
+							{
+								score++;
+							}
+						}
+					}
+				}
+				else
+				{// If we're outside the grid
+				}
+			}
+		}
+		return score;
 	}
 }
