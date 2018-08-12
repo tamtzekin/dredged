@@ -174,6 +174,14 @@ namespace Yarn.Unity.Example {
             // "Perform" the command
             Debug.Log ("Command: " + command.text);
 
+			if(command.text.Equals("waitTillEmpty"))
+			{
+				LudumInventory dispenserInventory = GameObject.Find("DispenserInventory").GetComponent<LudumInventory>();
+				while(!dispenserInventory.empty)
+				{
+					yield return null;
+				}
+			}
             yield break;
         }
 

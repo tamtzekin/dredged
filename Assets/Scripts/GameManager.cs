@@ -38,9 +38,12 @@ public class GameManager : MonoBehaviour {
 			{
 				ludumDialogueUI.optionButtons[0].onClick.Invoke();
 			}
-			else if(Input.GetKeyDown(KeyCode.Alpha2))
+			if(ludumDialogueUI.optionButtons[1].IsActive())
 			{
-				ludumDialogueUI.optionButtons[1].onClick.Invoke();
+				if(Input.GetKeyDown(KeyCode.Alpha2))
+				{
+					ludumDialogueUI.optionButtons[1].onClick.Invoke();
+				}
 			}
 		}
 	}
