@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using FarrokhGames.Inventory;
 using FarrokhGames.Inventory.Examples;
 using FarrokhGames.Shared;
+using Yarn.Unity;
 
 [RequireComponent(typeof(InventoryRenderer))]
 public class LudumInventory : MonoBehaviour
@@ -110,7 +111,7 @@ public class LudumInventory : MonoBehaviour
 
 	public void Evaluate()
 	{
-		Debug.Log("Evaluate");
+		//Debug.Log("Evaluate");
 		int total = 0;
 		for(int w = 0; w < inventory.Width; w++)
 		{
@@ -123,7 +124,11 @@ public class LudumInventory : MonoBehaviour
 				gridText[index].text = currentScores[w,h].ToString();
 			}
 		}
-		totalScoreText.text = total.ToString();
+
+		if (totalScoreText){
+			totalScoreText.text = total.ToString();
+		}
+
 	}
 
 	int GetCellScore(int gridX, int gridY)
@@ -146,7 +151,7 @@ public class LudumInventory : MonoBehaviour
 							ThoughtItem thoughtItem = (ThoughtItem) neighbourItem;
 							if(gameSettings.itemsOnlyAffectCellsOnce == false)
 							{
-								if(gameSettings.scoreOnlyFromOthers != true || (gameSettings.scoreOnlyFromOthers == true && item != thoughtItem))
+								if(gameSettings.scoreOnlyFromOthers != true || (gameSettings.scoreOnlyFromOthers == true && item != neighbourItem))
 								{
 									score = score + thoughtItem.score;
 								}
@@ -173,5 +178,11 @@ public class LudumInventory : MonoBehaviour
 			}
 		}
 		return score;
+	}
+
+	[YarnCommand("addItem")]
+	public void AddItem(string itemName)
+	{
+		inventory.Add(_definitions[0]);
 	}
 }
