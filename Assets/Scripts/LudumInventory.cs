@@ -183,6 +183,12 @@ public class LudumInventory : MonoBehaviour
 	[YarnCommand("addItem")]
 	public void AddItem(string itemName)
 	{
-		inventory.Add(_definitions[0]);
+		foreach(IInventoryItem item in _definitions)
+		{
+			if(item.Name == itemName)
+			{
+				inventory.Add(item);
+			}
+		}
 	}
 }
