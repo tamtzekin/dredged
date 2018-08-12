@@ -150,7 +150,7 @@ public class LudumInventory : MonoBehaviour
 							ThoughtItem thoughtItem = (ThoughtItem) neighbourItem;
 							if(gameSettings.itemsOnlyAffectCellsOnce == false)
 							{
-								if(gameSettings.scoreOnlyFromOthers != true || (gameSettings.scoreOnlyFromOthers == true && item != thoughtItem))
+								if(gameSettings.scoreOnlyFromOthers != true || (gameSettings.scoreOnlyFromOthers == true && item != neighbourItem))
 								{
 									score = score + thoughtItem.score;
 								}
