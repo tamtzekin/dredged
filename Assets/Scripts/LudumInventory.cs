@@ -15,8 +15,8 @@ public class LudumInventory : MonoBehaviour
 	[Header("Gameplay Options")]
 	public GameSettings gameSettings;
 
-	InventoryManager inventory;
-	InventoryController controller;
+	public InventoryManager inventory;
+	public InventoryController controller;
 
 	Text[] gridText;
 
