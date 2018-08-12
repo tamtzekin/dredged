@@ -59,7 +59,7 @@
 
             for (int y = 0; y < inventory.gameSettings.startHeight; y++){
                 for (int x = 0; x < inventory.gameSettings.startWidth; x++){    
-                    Debug.Log(inventory.currentScores[x,y]); 
+                    //Debug.Log(inventory.currentScores[x,y]); 
                     if (inventory.currentScores[x,y] > 0){ 
                         positions[i] = new Vector4(x, y, 0,0);
                         properties[i] = new Vector4(1, inventory.currentScores[x,y], 0 ,0);

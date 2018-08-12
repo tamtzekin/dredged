@@ -28,7 +28,8 @@ Shader "Hidden/Heatmap" {
 		vertOutput vert(vertInput input) {
 			vertOutput o;
 			o.pos = UnityObjectToClipPos(input.pos);
-			o.worldPos = mul(unity_ObjectToWorld, input.pos).xyz;
+			// o.worldPos = mul(unity_ObjectToWorld, input.pos).xyz;
+			o.worldPos = input.pos;
 			return o;
 		}
 

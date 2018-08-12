@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour {
 			yield return new WaitForSeconds (0.25f);
 			timerSlider.value -= 0.25f;
 		}
-		inventoryScript.AddItem("LieEyes");
+		inventoryScript.AddItem("Lie_No");
 		timerSlider.gameObject.SetActive(false);
 		timerCoroutine = null;
 	}
