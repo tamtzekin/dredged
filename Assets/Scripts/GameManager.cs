@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour {
 
 		inventoryScript = GameObject.Find("Inventory UI").GetComponent<LudumInventory>();
 
-
-		Debug.Log(dialogueRunnerScript);
 		StartCoroutine(StartDialogue());
 		
 	}

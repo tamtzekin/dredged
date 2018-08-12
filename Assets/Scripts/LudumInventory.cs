@@ -110,7 +110,7 @@ public class LudumInventory : MonoBehaviour
 
 	public void Evaluate()
 	{
-		Debug.Log("Evaluate");
+		//Debug.Log("Evaluate");
 		int total = 0;
 		for(int w = 0; w < inventory.Width; w++)
 		{
@@ -123,7 +123,11 @@ public class LudumInventory : MonoBehaviour
 				gridText[index].text = currentScores[w,h].ToString();
 			}
 		}
-		totalScoreText.text = total.ToString();
+
+		if (totalScoreText){
+			totalScoreText.text = total.ToString();
+		}
+
 	}
 
 	int GetCellScore(int gridX, int gridY)
