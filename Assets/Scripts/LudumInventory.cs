@@ -38,11 +38,13 @@ public class LudumInventory : MonoBehaviour
 		currentScores = new int[inventory.Width, inventory.Height];
 
 		// Fill inventory with random items
+		/*
 		var tries = (inventory.Width * inventory.Height) / 3;
 		for (var i = 0; i < tries; i++)
 		{
 			inventory.Add(_definitions[Random.Range(0, _definitions.Length)].CreateInstance());
 		}
+		*/
 
 		controller = GetComponent<InventoryController>();
 		// Sets the renderers's inventory to trigger drawing
