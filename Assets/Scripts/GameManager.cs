@@ -1,9 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Yarn.Unity.Example;
 
 public class GameManager : MonoBehaviour {
+
+	[Header("Introduction")]
+	[SerializeField] Text titleFadeOut;
+
+	[SerializeField] float waitForDialogueStart;
+
 	GameObject dialogueObject;
 	Yarn.Unity.DialogueRunner dialogueRunnerScript;
 	LudumDialogueUI ludumDialogueUI;
@@ -17,8 +24,26 @@ public class GameManager : MonoBehaviour {
 
 		inventoryScript = GameObject.Find("Inventory UI").GetComponent<LudumInventory>();
 
-		StartCoroutine(StartDialogue());
+		//StartCoroutine(StartDialogue());
+		StartCoroutine(FadeTitleOut());
 		
+	}
+
+	IEnumerator FadeTitleOut()
+	{
+		Color visible = new Color (titleFadeOut.color.r, titleFadeOut.color.g, titleFadeOut.color.b, titleFadeOut.color.a);
+		Color invisible = new Color (titleFadeOut.color.r, titleFadeOut.color.g, titleFadeOut.color.b, 0);
+		float progress = 0;
+		while(progress <= 1)
+		{
+			titleFadeOut.color = Color.Lerp (visible, invisible, progress);
+			progress = progress + 0.1f;
+			yield return new WaitForSeconds (0.1f);
+		}
+		titleFadeOut.color = new Color (titleFadeOut.color.r, titleFadeOut.color.g, titleFadeOut.color.b, 0);
+		Debug.Log ("Fade Finished ");
+		yield return new WaitForSeconds(waitForDialogueStart);
+		dialogueRunnerScript.StartDialogue();
 	}
 
 	IEnumerator StartDialogue(){
