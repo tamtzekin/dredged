@@ -26,6 +26,21 @@ namespace FarrokhGames.Inventory
 
 		public bool dragging { get { return _draggedItem != null;} } 
 
+		public IInventoryItem itemBeingDragged
+		{
+			get
+			{
+				if(_draggedItem != null)
+				{
+					return _draggedItem.Item;
+				}
+				else
+				{
+					return null;
+				}
+			}
+		}
+
             /*
              * Setup
              */
