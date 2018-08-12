@@ -75,7 +75,7 @@ public class LudumInventory : MonoBehaviour
 		var topLeft = new Vector3(-containerSize.x / 2, -containerSize.y / 2, 0); // Calculate topleft corner
 		var halfCellSize = new Vector3(CellSize.x / 2, CellSize.y / 2, 0); // Calulcate cells half-size
 
-		// Spawn grid images
+		// Spawn grid text - numbers for cell scores
 		gridText = new Text[inventory.Width * inventory.Height];
 		var c = 0;
 		for (int y = 0; y < inventory.Height; y++)
