@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreOnlyFromOthers: 0
   itemsOnlyAffectCellsOnce: 0
-  startWidth: 2
-  startHeight: 2
+  startWidth: 5
+  startHeight: 5
