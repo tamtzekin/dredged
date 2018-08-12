@@ -201,7 +201,9 @@ public class LudumInventory : MonoBehaviour
 			if(item.Name == itemName)
 			{
 				inventory.Add(item.CreateInstance());
+				return;
 			}
 		}
+		Debug.Log ("Did not find " + itemName);
 	}
 }
