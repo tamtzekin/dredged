@@ -14,13 +14,18 @@ public class GameManager : MonoBehaviour {
 
 		inventoryScript = GameObject.Find("Inventory UI").GetComponent<LudumInventory>();
 
-		StartDialogue();
+
+		Debug.Log(dialogueRunnerScript);
+		StartCoroutine(StartDialogue());
 		
 	}
 
-	void StartDialogue(){
+	IEnumerator StartDialogue(){
 
+		// Have to wait for dialogue runner to finish it's starter method
+		yield return new WaitForSeconds(0.1f);
 		dialogueRunnerScript.StartDialogue();
+		yield return null;
 
 	}
 	

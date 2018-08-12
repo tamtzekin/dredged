@@ -287,6 +287,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 391518456}
+  - component: {fileID: 391518457}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -307,6 +308,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &391518457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 391518455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f02360d6f3dd364d93e03b9f13d6ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &458206474
 Prefab:
   m_ObjectHideFlags: 0
@@ -376,6 +388,11 @@ Prefab:
       propertyPath: sourceText.Array.data[0]
       value: 
       objectReference: {fileID: 4900000, guid: 94e3bdae062ea428bbb0d1f02e5adcb9, type: 3}
+    - target: {fileID: 114979369783013046, guid: fcdab895d8e62fc46ba01748d0239d7f,
+        type: 2}
+      propertyPath: startAutomatically
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fcdab895d8e62fc46ba01748d0239d7f, type: 2}
   m_IsPrefabParent: 0
@@ -684,7 +701,7 @@ Prefab:
     - target: {fileID: 224804285805639670, guid: a261129a7a41380479aeccf60d6f957c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -270.025
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224804285805639670, guid: a261129a7a41380479aeccf60d6f957c,
         type: 2}
@@ -694,7 +711,7 @@ Prefab:
     - target: {fileID: 224804285805639670, guid: a261129a7a41380479aeccf60d6f957c,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 540.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224920540280401012, guid: a261129a7a41380479aeccf60d6f957c,
         type: 2}
@@ -714,7 +731,7 @@ Prefab:
     - target: {fileID: 224920540280401012, guid: a261129a7a41380479aeccf60d6f957c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -270.025
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224920540280401012, guid: a261129a7a41380479aeccf60d6f957c,
         type: 2}
@@ -724,7 +741,7 @@ Prefab:
     - target: {fileID: 224920540280401012, guid: a261129a7a41380479aeccf60d6f957c,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 540.05
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a261129a7a41380479aeccf60d6f957c, type: 2}
