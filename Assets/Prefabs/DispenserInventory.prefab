@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 82573056015233182}
   - component: {fileID: 114604001726876744}
   m_Layer: 5
-  m_Name: Dispenser UI
+  m_Name: DispenserInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

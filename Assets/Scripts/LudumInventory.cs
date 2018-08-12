@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using FarrokhGames.Inventory;
 using FarrokhGames.Inventory.Examples;
 using FarrokhGames.Shared;
+using Yarn.Unity;
 
 [RequireComponent(typeof(InventoryRenderer))]
 public class LudumInventory : MonoBehaviour
@@ -177,5 +178,11 @@ public class LudumInventory : MonoBehaviour
 			}
 		}
 		return score;
+	}
+
+	[YarnCommand("addItem")]
+	public void AddItem(string itemName)
+	{
+		inventory.Add(_definitions[0]);
 	}
 }
