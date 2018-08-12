@@ -24,6 +24,8 @@ namespace FarrokhGames.Inventory
 
 		[SerializeField] private AudioSource holdAudioSource;
 
+		public bool dragging { get { return _draggedItem != null;} } 
+
             /*
              * Setup
              */

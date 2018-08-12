@@ -16,6 +16,7 @@ public class LudumInventory : MonoBehaviour
 	[SerializeField] GameSettings gameSettings;
 
 	InventoryManager inventory;
+	InventoryController controller;
 
 	Text[] gridText;
 
@@ -24,6 +25,8 @@ public class LudumInventory : MonoBehaviour
 	[SerializeField] int[,] currentScores;
 
 	private Pool<Text> _textPool;
+
+	public bool empty { get { return inventory.AllItems.Count == 0 && !controller.dragging;} } 
 
 	// Use this for initialization
 	void Start ()
@@ -40,6 +43,7 @@ public class LudumInventory : MonoBehaviour
 			inventory.Add(_definitions[Random.Range(0, _definitions.Length)].CreateInstance());
 		}
 
+		controller = GetComponent<InventoryController>();
 		// Sets the renderers's inventory to trigger drawing
 		InventoryRenderer inventoryRenderer = GetComponent<InventoryRenderer>();
 		GetComponent<InventoryRenderer>().SetInventory(inventory);
