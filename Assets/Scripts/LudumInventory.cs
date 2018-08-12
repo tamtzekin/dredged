@@ -103,6 +103,7 @@ public class LudumInventory : MonoBehaviour
 			GetComponent<AudioSource>().PlayOneShot(thoughtItem.dropSound);
 			Evaluate();
 		};
+		gameObject.SetActive(false);
 	}
 
 	/*

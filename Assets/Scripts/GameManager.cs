@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
 	LudumDialogueUI ludumDialogueUI;
 
 	LudumInventory inventoryScript;
+
+	LudumInventory dispenserInventory;
 	// Use this for initialization
 	void Awake () {
 		dialogueObject = GameObject.Find("Dialogue");
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour {
 		ludumDialogueUI = (LudumDialogueUI) dialogueRunnerScript.dialogueUI;
 
 		inventoryScript = GameObject.Find("Inventory UI").GetComponent<LudumInventory>();
+
+		dispenserInventory = GameObject.Find("DispenserInventory").GetComponent<LudumInventory>();
 
 		//StartCoroutine(StartDialogue());
 		StartCoroutine(FadeTitleOut());
@@ -71,5 +75,12 @@ public class GameManager : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	[YarnCommand("showInventories")]
+	public void ShowInventories()
+	{
+		inventoryScript.gameObject.SetActive(true);
+		dispenserInventory.gameObject.SetActive(true);
 	}
 }
