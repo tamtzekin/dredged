@@ -13,7 +13,7 @@ public class LudumInventory : MonoBehaviour
 	[SerializeField] private Font font;
 
 	[Header("Gameplay Options")]
-	[SerializeField] GameSettings gameSettings;
+	public GameSettings gameSettings;
 
 	InventoryManager inventory;
 
@@ -21,9 +21,11 @@ public class LudumInventory : MonoBehaviour
 
 	[SerializeField] Text totalScoreText;
 
-	[SerializeField] int[,] currentScores;
+	public int[,] currentScores;
 
 	private Pool<Text> _textPool;
+
+	public Heatmap heatmap;
 
 	// Use this for initialization
 	void Start ()
@@ -128,6 +130,12 @@ public class LudumInventory : MonoBehaviour
 		if (totalScoreText){
 			totalScoreText.text = total.ToString();
 		}
+		
+		if (heatmap){
+
+			heatmap.heatmapRefresh = true;
+		}
+
 
 	}
 
