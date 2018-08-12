@@ -187,11 +187,11 @@ public class LudumInventory : MonoBehaviour
 	[YarnCommand("addItem")]
 	public void AddItem(string itemName)
 	{
-		foreach(IInventoryItem item in _definitions)
+		foreach(ThoughtItem item in _definitions)
 		{
 			if(item.Name == itemName)
 			{
-				inventory.Add(item);
+				inventory.Add(item.CreateInstance());
 			}
 		}
 	}
