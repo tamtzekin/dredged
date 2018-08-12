@@ -5,114 +5,114 @@ position: 592,181
 ---
 Okay.
 -> —Where am I. 
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 Let's start again.
 -> —What is this about? 
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 Here, can you take a seat?
 -> —Sure. ['1']
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 -> —I’m already sitting down. ['2'] 
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 It's good to have you back. What is your name?
 -> —S. ['1'] 
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 -> —B. ['2'] 
-	<<addItem DispenserInventory ItemLie>>
+	<<addItem DispenserInventory LieWho>>
 <<waitTillEmpty>>
 You didn’t say that last time. Tell me again, what’s your name?
 -> —S. ['1']
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 -> —B. ['2'] 
-	<<addItem DispenserInventory ItemLie>>
+	<<addItem DispenserInventory LieWho>>
 <<waitTillEmpty>>
 Let's just move on. Tell me about the first time you met Riley.
 -> —Who? 
-	<<addItem DispenserInventory ItemAwkwardLie>>
+	<<addItem DispenserInventory LieOkay>>
 -> —Okay. What do you want to know? 
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 When did you meet them?
 -> —There were a couple of times.
-	<<addItem DispenserInventory ItemLie>>
+	<<addItem DispenserInventory LieWho>>
 -> —I only met Riley once.
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 Did you speak to them? 
 -> —Yes.
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 -> —No. 
-	<<addItem DispenserInventory ItemBigLie>>
+	<<addItem DispenserInventory LieKilled>>
 <<waitTillEmpty>>
 Try to remember for me. Did you?
 -> —Yes.
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 -> —No. 
-	<<addItem DispenserInventory ItemAwkwardLie>>
+	<<addItem DispenserInventory LieOkay>>
 <<waitTillEmpty>>
 Good. So, do you know where B. is now?
 -> —Yes.
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 -> —He's with you. 
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 What did Riley do to B.?
 -> —I never found out. 
-	<<addItem DispenserInventory ItemBigLie>>
+	<<addItem DispenserInventory LieKilled>>
 -> —Took him away.
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 B. has trouble breathing now. That's what you told me last time we went through this.
 -> —...
 Has B. been having trouble breathing?
 -> —Yes. I told you this. 
-	<<addItem DispenserInventory ItemAwkwardLie>>
+	<<addItem DispenserInventory LieOkay>>
 -> —No. That's wrong.
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 Okay. Then, can I set the scene for you? It might help?
 -> —...
 When B. was found he was stuggling to breathe. He said Riley said it was payback for what you did. 
 -> —Payback...
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 First, the rash. Then, the sleep. Not being able to sleep. And third...
 -> —Third was the breathing. 
-	<<addItem DispenserInventory ItemAwkwardLie>> 
+	<<addItem DispenserInventory LieOkay>> 
 -> —Third was his eyes.
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 That's right. You remember now. 
 -> —I remember.
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 B. moved all his money and the shared assets you and he had to a bank account offshore. Did this happen before or after you met Riley?
 -> —Before. 
-	<<addItem DispenserInventory ItemBigLie>>
+	<<addItem DispenserInventory LieKilled>>
 -> —After
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 And had you met Riley before?
 -> —Just a few times. 
-	<<addItem DispenserInventory ItemBigLie>>
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory LieKilled>>
+	<<addItem DispenserInventory TruthOnce>>
 -> —I've only met Riley once.
 <<waitTillEmpty>>
 Was it you, or was it Riley?
 -> —...
 I'm sorry. Sorry to dwell on it. It's horrible. Did you do this to B., or did Riley do this?
 -> —I did it. 
-	<<addItem DispenserInventory ItemAwkwardTruth>>
+	<<addItem DispenserInventory TruthAfter>>
 -> —Riley.
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 What did Riley do to B.?
 -> —Riley killed him. 
-	<<addItem DispenserInventory ItemAwkwardLie>> 
+	<<addItem DispenserInventory LieOkay>> 
 -> —Riley took him away.
-	<<addItem DispenserInventory ItemTruth>>
+	<<addItem DispenserInventory TruthOnce>>
 <<waitTillEmpty>>
 And so when we found B. sitting on the side of the road – I mean, he wouldn't even talk to us, he wouldn't even tell us where he'd been –  you're saying that
