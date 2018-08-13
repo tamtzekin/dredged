@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Yarn.Unity;
 using Yarn.Unity.Example;
+using FarrokhGames.Inventory;
 
 public class GameManager : MonoBehaviour {
 
@@ -152,7 +153,13 @@ public class GameManager : MonoBehaviour {
 	public void AddItem(string itemName)
 	{
 		dispenserInventory.gameObject.SetActive(true);
-		dispenserInventory.AddItem(itemName);
+		IInventoryItem newItem = dispenserInventory.AddItem(itemName);
+		if(!inventoryScript.inventory.CanAdd(newItem))
+		{
+			Debug.Log ("Outta room!!!");
+			dialogueRunnerScript.startNode = "GameOver";
+			dialogueRunnerScript.StartDialogue();
+		}
 	}
 
 	[YarnCommand("GameOver")]

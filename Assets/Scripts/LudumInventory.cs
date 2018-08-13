@@ -229,16 +229,18 @@ public class LudumInventory : MonoBehaviour
 	}
 
 	[YarnCommand("addItem")]
-	public void AddItem(string itemName)
+	public IInventoryItem AddItem(string itemName)
 	{
 		foreach(ThoughtItem item in _definitions)
 		{
 			if(item.Name == itemName)
 			{
-				inventory.Add(item.CreateInstance());
-				return;
+				IInventoryItem newItem = item.CreateInstance();
+				inventory.Add(newItem);
+				return newItem;
 			}
 		}
 		Debug.Log ("Did not find " + itemName);
+		return null;
 	}
 }
