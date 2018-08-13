@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using FarrokhGames.Inventory;
@@ -28,6 +29,8 @@ public class LudumInventory : MonoBehaviour
 
 	public Heatmap heatmap;
 	public bool empty { get { return inventory.AllItems.Count == 0 && !controller.dragging;} } 
+
+	public Action<int> OnScoreUpdate;
 
 	// Use this for initialization
 	void Start ()
@@ -135,6 +138,10 @@ public class LudumInventory : MonoBehaviour
 
 		if (totalScoreText){
 			totalScoreText.text = total.ToString();
+			if (OnScoreUpdate != null)
+			{
+				OnScoreUpdate(total);
+			}
 		}
 		
 		if (heatmap){

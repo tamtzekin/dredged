@@ -51,3 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f02360d6f3dd364d93e03b9f13d6ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleFadeOut: {fileID: 0}
+  waitForDialogueStart: 0
+  maxTime: 0
+  maxScore: 200

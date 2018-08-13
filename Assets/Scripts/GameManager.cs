@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour {
 
 	Coroutine timerCoroutine = null;
 
+	[Header("Gameplay")]
+	[SerializeField] int maxScore;
+
 	GameObject dialogueObject;
 	Yarn.Unity.DialogueRunner dialogueRunnerScript;
 	LudumDialogueUI ludumDialogueUI;
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour {
 		ludumDialogueUI = (LudumDialogueUI) dialogueRunnerScript.dialogueUI;
 
 		inventoryScript = GameObject.Find("Inventory UI").GetComponent<LudumInventory>();
+		inventoryScript.OnScoreUpdate+= EvaluateScore;
 
 		dispenserInventory = GameObject.Find("DispenserInventory").GetComponent<LudumInventory>();
 
@@ -99,6 +103,15 @@ public class GameManager : MonoBehaviour {
 					ludumDialogueUI.optionButtons[1].onClick.Invoke();
 				}
 			}
+		}
+	}
+
+	public void EvaluateScore(int newScore)
+	{
+		Debug.Log ("Score updated to " + newScore);
+		if(newScore > maxScore)
+		{
+			Debug.Log ("Game Over");
 		}
 	}
 
