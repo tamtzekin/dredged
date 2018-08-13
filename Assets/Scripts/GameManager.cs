@@ -12,6 +12,16 @@ public class GameManager : MonoBehaviour {
 
 	[SerializeField] float waitForDialogueStart;
 
+	Slider timerSlider;
+
+	[Header("Timer")]
+	[SerializeField] int maxTime;
+
+	Coroutine timerCoroutine = null;
+
+	[Header("Gameplay")]
+	[SerializeField] int maxScore;
+
 	GameObject dialogueObject;
 	Yarn.Unity.DialogueRunner dialogueRunnerScript;
 	LudumDialogueUI ludumDialogueUI;
@@ -26,9 +36,13 @@ public class GameManager : MonoBehaviour {
 		ludumDialogueUI = (LudumDialogueUI) dialogueRunnerScript.dialogueUI;
 
 		inventoryScript = GameObject.Find("Inventory UI").GetComponent<LudumInventory>();
+		inventoryScript.OnScoreUpdate+= EvaluateScore;
 
 		dispenserInventory = GameObject.Find("DispenserInventory").GetComponent<LudumInventory>();
 
+		timerSlider = GameObject.Find("TimerSlider").GetComponent<Slider>();
+		timerSlider.gameObject.SetActive(false);
+		timerSlider.maxValue = maxTime;
 		//StartCoroutine(StartDialogue());
 		StartCoroutine(FadeTitleOut());
 		
@@ -60,6 +74,20 @@ public class GameManager : MonoBehaviour {
 
 	}
 
+	IEnumerator RunTimer()
+	{
+		Debug.Log ("Running timer");
+		timerSlider.value = timerSlider.maxValue;
+		while(timerSlider.value > 0)
+		{
+			yield return new WaitForSeconds (0.25f);
+			timerSlider.value -= 0.25f;
+		}
+		inventoryScript.AddItem("LieEyes");
+		timerSlider.gameObject.SetActive(false);
+		timerCoroutine = null;
+	}
+
 	void Update()
 	{
 		if(ludumDialogueUI.optionButtons[0].IsActive())
@@ -78,10 +106,42 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	public void EvaluateScore(int newScore)
+	{
+		Debug.Log ("Score updated to " + newScore);
+		if(newScore > maxScore)
+		{
+			Debug.Log ("Game Over");
+		}
+	}
+
 	[YarnCommand("showInventories")]
 	public void ShowInventories()
 	{
 		inventoryScript.gameObject.SetActive(true);
 		dispenserInventory.gameObject.SetActive(true);
+		dispenserInventory.inventory.OnItemAdded += (item) =>
+		{
+			if(timerCoroutine == null)
+			{
+				timerSlider.gameObject.SetActive(true);
+				timerCoroutine = StartCoroutine(RunTimer ());
+			}
+		};
+		inventoryScript.inventory.OnItemAdded += (item) =>
+		{
+			timerSlider.value = timerSlider.maxValue;
+			if(dispenserInventory.inventory.AllItems.Count == 0 &&
+			   (dispenserInventory.controller.itemBeingDragged == null ||
+			   dispenserInventory.controller.itemBeingDragged == item))
+			{
+				timerSlider.gameObject.SetActive(false);
+				if(timerCoroutine != null)
+				{
+					StopCoroutine(timerCoroutine);
+					timerCoroutine = null;
+				}
+			}
+		};
 	}
 }
