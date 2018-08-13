@@ -122,7 +122,6 @@ public class GameManager : MonoBehaviour {
 	public void ShowInventories()
 	{
 		inventoryScript.gameObject.SetActive(true);
-		dispenserInventory.gameObject.SetActive(true);
 		dispenserInventory.inventory.OnItemAdded += (item) =>
 		{
 			if(timerCoroutine == null)
@@ -144,8 +143,16 @@ public class GameManager : MonoBehaviour {
 					StopCoroutine(timerCoroutine);
 					timerCoroutine = null;
 				}
+				dispenserInventory.gameObject.SetActive(false);
 			}
 		};
+	}
+
+	[YarnCommand("addItem")]
+	public void AddItem(string itemName)
+	{
+		dispenserInventory.gameObject.SetActive(true);
+		dispenserInventory.AddItem(itemName);
 	}
 
 	[YarnCommand("GameOver")]
