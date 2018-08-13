@@ -70,6 +70,8 @@ namespace Yarn.Unity.Example {
         /// dialogue is active and to restore them when dialogue ends
         public RectTransform gameControlsContainer;
 
+		LudumInventory dispenserInventory;
+
         void Awake ()
         {
             // Start by hiding the container, line and option buttons
@@ -85,6 +87,8 @@ namespace Yarn.Unity.Example {
             // Hide the continue prompt if it exists
             if (continuePrompt != null)
                 continuePrompt.SetActive (false);
+
+			dispenserInventory = GameObject.Find("DispenserInventory").GetComponent<LudumInventory>();
         }
 
         /// Show a line of dialogue, gradually
@@ -176,7 +180,6 @@ namespace Yarn.Unity.Example {
 
 			if(command.text.Equals("waitTillEmpty"))
 			{
-				LudumInventory dispenserInventory = GameObject.Find("DispenserInventory").GetComponent<LudumInventory>();
 				while(!dispenserInventory.empty)
 				{
 					yield return null;
