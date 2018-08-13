@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Yarn.Unity;
 using Yarn.Unity.Example;
@@ -112,6 +113,8 @@ public class GameManager : MonoBehaviour {
 		if(newScore > maxScore)
 		{
 			Debug.Log ("Game Over");
+			dialogueRunnerScript.startNode = "GameOver";
+			dialogueRunnerScript.StartDialogue();
 		}
 	}
 
@@ -143,5 +146,11 @@ public class GameManager : MonoBehaviour {
 				}
 			}
 		};
+	}
+
+	[YarnCommand("GameOver")]
+	public void GameOver()
+	{
+		SceneManager.LoadScene(0);
 	}
 }

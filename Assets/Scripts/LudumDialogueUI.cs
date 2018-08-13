@@ -219,6 +219,12 @@ namespace Yarn.Unity.Example {
             yield break;
         }
 
+		[YarnCommand("ChangeContinueToRestartText")]
+		public void ChangeContinueToRestartText()
+		{
+			continuePrompt.GetComponent<Text>().text = "You drift into unconsciousness...";
+		}
+
     }
 
 }

@@ -1,0 +1,10 @@
+title: GameOver
+tags: 
+colorID: 0
+position: 592,181
+---
+I think I've heard enough.
+-> -Wait...
+<<ChangeContinueToRestartText Dialogue>>
+No, we're done here.
+<<GameOver GameManager>>
