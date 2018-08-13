@@ -156,7 +156,7 @@ public class LudumInventory : MonoBehaviour
 		}
 
 		if (totalScoreText){
-			totalScoreText.text = total.ToString();
+			totalScoreText.text = "Cognitive Load: " + total.ToString();
 			if (OnScoreUpdate != null)
 			{
 				OnScoreUpdate(total);
