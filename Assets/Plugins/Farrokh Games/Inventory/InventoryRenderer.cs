@@ -292,11 +292,24 @@ namespace FarrokhGames.Inventory
         /// </summary>
         public void ClearSelection()
         {
-            for (var i = 0; i < _grids.Length; i++)
-            {
-                _grids[i].sprite = _cellSpriteEmpty;
-                _grids[i].color = Color.white;
-            }
+			for(int w = 0; w < _inventory.Width; w++)
+			{
+				for(int h = 0; h < _inventory.Height; h++)
+				{
+					var i = h * _inventory.Width + ((_inventory.Width - 1) - w);
+					IInventoryItem itemInCell = _inventory.GetAtPoint(new Vector2Int(w,h));
+					if(itemInCell != null)
+					{
+						_grids[i].sprite = _cellSpriteBlocked;
+						_grids[i].color = Color.white;
+					}
+					else
+					{
+						_grids[i].sprite = _cellSpriteEmpty;
+						_grids[i].color = Color.white;
+					}
+				}
+			}
         }
 
         /*
