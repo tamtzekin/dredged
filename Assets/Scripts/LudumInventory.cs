@@ -88,6 +88,8 @@ public class LudumInventory : MonoBehaviour
 				Text text = CreateText();
 				text.text = "0";
 				text.color = Color.white;
+				text.fontSize = 20;
+				text.fontStyle = FontStyle.Bold;
 				text.font = font;
 				text.alignment = TextAnchor.MiddleCenter;
 				text.gameObject.name = "text " + c;
@@ -133,6 +135,23 @@ public class LudumInventory : MonoBehaviour
 				currentScores[w,h] = currentCellScore;
 				var index = h * inventory.Width + ((inventory.Width - 1) - w);
 				gridText[index].text = currentScores[w,h].ToString();
+
+				if (currentScores[w,h] > 0){
+					gridText[index].color = Color.red;			
+
+				}
+
+				else if (currentScores[w,h] == 0){
+					gridText[index].color = Color.white;			
+
+
+				}
+				else{
+					gridText[index].color = Color.cyan;			
+
+
+				}
+
 			}
 		}
 
@@ -158,6 +177,13 @@ public class LudumInventory : MonoBehaviour
 
 		int score = 0;
 		IInventoryItem item = inventory.GetAtPoint(new Vector2Int(gridX,gridY));
+
+		if (item != null){
+
+			ThoughtItem selfThoughtItem = (ThoughtItem) item;
+			score = score + selfThoughtItem.score;
+		}
+
 		for (int neighbourX = gridX - 1; neighbourX <= gridX + 1; neighbourX ++)
 		{
 			for (int neighbourY = gridY - 1; neighbourY <= gridY + 1; neighbourY ++)
@@ -183,6 +209,7 @@ public class LudumInventory : MonoBehaviour
 							}
 						}
 					}
+
 				}
 				else
 				{// If we're outside the grid

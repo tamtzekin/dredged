@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ac94ba9570a4e9ebe86d70a26c80fb, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  scoreOnlyFromOthers: 0
-  itemsOnlyAffectCellsOnce: 0
+  scoreOnlyFromOthers: 1
+  itemsOnlyAffectCellsOnce: 1
   startWidth: 10
   startHeight: 10
