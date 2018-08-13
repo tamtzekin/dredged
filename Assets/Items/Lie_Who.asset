@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300014, guid: dd35907d3f458f649905d16710a3c6a4, type: 3}
   _shape:
-    _width: 2
+    _width: 3
     _height: 1
-    _shape: 0101
+    _shape: 010101
   dropSound: {fileID: 8300000, guid: b95de531ad229404894aa71ac8e09520, type: 3}
   score: -1
