@@ -46,8 +46,11 @@ public class GameManager : MonoBehaviour {
 		timerSlider.gameObject.SetActive(false);
 		timerSlider.maxValue = maxTime;
 		//StartCoroutine(StartDialogue());
+	}
+
+	public void StartGame()
+	{
 		StartCoroutine(FadeTitleOut());
-		
 	}
 
 	IEnumerator FadeTitleOut()
