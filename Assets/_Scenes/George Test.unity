@@ -1378,6 +1378,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 487948060}
   m_Script: {fileID: 11500000, guid: dca47862fdec945a38ce8aaa334dcd48, type: 3}
+--- !u!114 &1151866916 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114519508872076882, guid: a0752f0a6ceec504786dc12e59d0a9c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1573431085}
+  m_Script: {fileID: 11500000, guid: 4f02360d6f3dd364d93e03b9f13d6ccc, type: 3}
 --- !u!1 &1171872928
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,11 +2341,6 @@ Prefab:
         type: 2}
       propertyPath: waitForDialogueStart
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114519508872076882, guid: a0752f0a6ceec504786dc12e59d0a9c4,
-        type: 2}
-      propertyPath: maxTime
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a0752f0a6ceec504786dc12e59d0a9c4, type: 2}

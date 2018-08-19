@@ -53,5 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleFadeOut: {fileID: 0}
   waitForDialogueStart: 0
-  maxTime: 0
+  maxTime: 10
   maxScore: 200
