@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour {
 		if(newScore > maxScore)
 		{
 			Debug.Log ("Game Over");
-			dialogueRunnerScript.startNode = "GameOver";
+			dialogueRunnerScript.startNode = "Ending.OverLimit";
 			dialogueRunnerScript.StartDialogue();
 		}
 	}
@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour {
 		if(!inventoryScript.inventory.CanAdd(newItem))
 		{
 			Debug.Log ("Outta room!!!");
-			dialogueRunnerScript.startNode = "GameOver";
+			dialogueRunnerScript.startNode = "Ending.NoRoom";
 			dialogueRunnerScript.StartDialogue();
 		}
 	}
