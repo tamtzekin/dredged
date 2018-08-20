@@ -109,6 +109,11 @@ public class GameManager : MonoBehaviour {
 				}
 			}
 		}
+
+		if(Input.GetKeyDown(KeyCode.Space))
+		{
+			ludumDialogueUI.SkipLine();
+		}
 	}
 
 	public void EvaluateScore(int newScore)

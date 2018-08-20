@@ -72,6 +72,10 @@ namespace Yarn.Unity.Example {
 
 		LudumInventory dispenserInventory;
 
+		bool skipLine = false;
+
+		bool writing = false;
+
         void Awake ()
         {
             // Start by hiding the container, line and option buttons
@@ -101,11 +105,19 @@ namespace Yarn.Unity.Example {
                 // Display the line one character at a time
                 var stringBuilder = new StringBuilder ();
 
+				writing = true;
                 foreach (char c in line.text) {
+					if(skipLine == true)
+					{
+						lineText.text = line.text;
+						break;
+					}
                     stringBuilder.Append (c);
                     lineText.text = stringBuilder.ToString ();
                     yield return new WaitForSeconds (textSpeed);
                 }
+				writing = false;
+				skipLine = false;
             } else {
                 // Display the line immediately if textSpeed == 0
                 lineText.text = line.text;
@@ -127,6 +139,14 @@ namespace Yarn.Unity.Example {
                 continuePrompt.SetActive (false);
 
         }
+
+		public void SkipLine()
+		{
+			if(writing)
+			{
+				skipLine = true;
+			}
+		}
 
         /// Show a list of options, and wait for the player to make a selection.
         public override IEnumerator RunOptions (Yarn.Options optionsCollection, 
